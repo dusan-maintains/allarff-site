@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>oss-health-scan: find the npm dependencies nobody maintains</title>
 <meta name="description" content="Open-source CLI and GitHub Action that flags abandoned, deprecated and single-maintainer npm dependencies before they become supply-chain incidents.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="oss-health-scan — find the npm dependencies nobody maintains">
+<meta property="og:description" content="Open-source CLI + GitHub Action: flags abandoned, deprecated and single-maintainer npm dependencies. 0-100 health scores, SARIF, OSV.dev CVE checks.">
+<meta property="og:url" content="https://allarff.com">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"oss-health-scan","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://allarff.com","author":{"@type":"Person","name":"Dusan Hunter"},"license":"https://opensource.org/licenses/MIT"}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23E3A21A'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#F4F6F8;--ink:#101C26;--mute:#4F5F6E;--line:#D5DDE3;--slate:#C3CED8;--amber:#E3A21A;--teal:#0B6B6B}
@@ -48,6 +56,7 @@ footer p{margin:.25rem 0}
 <h1>Find the dependencies nobody maintains anymore</h1>
 <p class="lead">npm audit lists known vulnerabilities. It does not tell you which of your packages are deprecated, archived or kept alive by a single person. oss-health-scan does, in your terminal and in CI.</p>
 <pre><code>npx oss-health-scan</code></pre>
+<p><img src="https://raw.githubusercontent.com/dusan-maintains/oss-maintenance-log/main/docs/cli-demo.png" alt="oss-health-scan в терминале: оценки здоровья пакетов" style="max-width:100%;border:1px solid var(--line);border-radius:6px"></p>
 <div class="btns">
 <a class="btn p" href="https://github.com/dusan-maintains/oss-maintenance-log">View on GitHub</a>
 <a class="btn" href="https://www.npmjs.com/package/oss-health-scan">View on npm</a>
@@ -80,6 +89,15 @@ footer p{margin:.25rem 0}
 <div class="grid" role="img" aria-label="123 squares, 20 highlighted: 20 of the 123 scanned packages are deprecated or archived"></div>
 <p class="key">Each square is one scanned package. Amber squares are deprecated or archived.</p>
 <p>The script and the data are <a href="https://github.com/dusan-maintains/oss-maintenance-log">in the repository</a>, so you can rerun the study yourself.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>FAQ</h2>
+<ul>
+<li><b>Works with pnpm/yarn?</b> Yes — it scans package.json / lockfiles of any npm-ecosystem package manager.</li>
+<li><b>Does it phone home?</b> No. Zero runtime dependencies, reads public registry/GitHub data only.</li>
+<li><b>Free for CI?</b> Yes — MIT, plus a reusable GitHub Action.</li>
+</ul>
 </div></section>
 
 <section><div class="wrap">
