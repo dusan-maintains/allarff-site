@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>oss-health-scan: find the npm dependencies nobody maintains</title>
+<meta name="description" content="Open-source CLI and GitHub Action that flags abandoned, deprecated and single-maintainer npm dependencies before they become supply-chain incidents.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23E3A21A'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#F4F6F8;--ink:#101C26;--mute:#4F5F6E;--line:#D5DDE3;--slate:#C3CED8;--amber:#E3A21A;--teal:#0B6B6B}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--teal);text-underline-offset:.2em}
+a:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+header{padding:1.5rem 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.name{font-weight:700;color:var(--ink);text-decoration:none}
+nav a{margin-left:1.25rem}
+h1,h2{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:600;line-height:1.12;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.5rem);padding-top:clamp(3rem,9vw,5.5rem);letter-spacing:-.01em}
+h2{font-size:1.7rem;margin-bottom:1rem}
+.lead{font-size:1.2rem;color:var(--mute);margin:1.25rem 0 1.75rem;max-width:36rem}
+pre{margin:0 0 1.5rem;padding:.9rem 1.1rem;background:var(--ink);color:#F4F6F8;border-radius:6px;overflow-x:auto;font:1rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap;padding-bottom:clamp(3rem,8vw,5rem)}
+.btn{display:inline-block;padding:.6rem 1.1rem;border-radius:6px;border:2px solid var(--teal);font-weight:600;text-decoration:none}
+.btn.p{background:var(--teal);color:#fff}
+section{padding:clamp(2.5rem,7vw,4rem) 0;border-top:1px solid var(--line)}
+.grid{display:flex;flex-wrap:wrap;gap:.3rem;margin:1.5rem 0 .75rem}
+.grid span{width:1.3rem;height:1.3rem;background:var(--slate);border-radius:2px}
+.grid span.x{background:var(--amber)}
+.key{color:var(--mute);font-size:.95rem;margin:0 0 1.25rem}
+ul{padding-left:1.2rem;margin:0}
+li{margin:.55rem 0;max-width:38rem}
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--mute);font-size:.95rem}
+footer p{margin:.25rem 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="name" href="/">oss-health-scan</a>
+<nav><a href="https://github.com/dusan-maintains/oss-maintenance-log">GitHub</a><a href="https://www.npmjs.com/package/oss-health-scan">npm</a><a href="mailto:hunter.dusan@allarff.com">Contact</a></nav>
+</div></header>
+
+<main>
+<div class="wrap">
+<h1>Find the dependencies nobody maintains anymore</h1>
+<p class="lead">npm audit lists known vulnerabilities. It does not tell you which of your packages are deprecated, archived or kept alive by a single person. oss-health-scan does, in your terminal and in CI.</p>
+<pre><code>npx oss-health-scan</code></pre>
+<div class="btns">
+<a class="btn p" href="https://github.com/dusan-maintains/oss-maintenance-log">View on GitHub</a>
+<a class="btn" href="https://www.npmjs.com/package/oss-health-scan">View on npm</a>
+</div>
+</div>
+
+<section><div class="wrap">
+<h2>What it checks</h2>
+<p>It ships as a command-line tool and as a GitHub Action, with no runtime dependencies of its own.</p>
+<ul>
+<li>Scores every dependency from 0 to 100.</li>
+<li>Flags packages that are deprecated, archived or unmaintained.</li>
+<li>Checks known vulnerabilities against OSV.dev.</li>
+<!-- 1.7.0 features: uncomment after npm publish of 1.7.0
+<li>Rates blast radius: how widely a package is used, whether it runs install scripts, whether one person maintains it, how abandoned it is and whether it has known CVEs.</li>
+<li>Diffs dependency health between two git refs.</li>
+-->
+<li>Comments on pull requests and can fail the build on critical findings.</li>
+<li>Writes SARIF for GitHub Code Scanning and a stable JSON manifest for audits.</li>
+</ul>
+</div></section>
+
+<section><div class="wrap">
+<h2>State of npm Abandonment 2026</h2>
+<p>I scanned 123 of the most-depended-on npm packages. 20 of them are deprecated or archived, and together they still account for about 297 million downloads a week.</p>
+<div class="grid" role="img" aria-label="123 squares, 20 highlighted: 20 of the 123 scanned packages are deprecated or archived"></div>
+<p class="key">Each square is one scanned package. Amber squares are deprecated or archived.</p>
+<p>The script and the data are <a href="https://github.com/dusan-maintains/oss-maintenance-log">in the repository</a>, so you can rerun the study yourself.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>About</h2>
+<p>oss-health-scan is built and maintained by Dusan Hunter. It is MIT licensed and self-funded. Work started in February 2026.</p>
+<!-- Optional: add 2-3 honest sentences about where the project is going, only if they are true -->
+<p>Questions, bug reports and ideas: <a href="mailto:hunter.dusan@allarff.com">hunter.dusan@allarff.com</a></p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<p>&copy; 2026 Dusan Hunter</p>
+<p>Released under the MIT license.</p>
+</div></footer>
+
+<script>
+var g=document.querySelector('.grid');
+for(var i=0;i<123;i++){var s=document.createElement('span');if(i<20)s.className='x';g.appendChild(s)}
+</script>
+</body>
+</html>
